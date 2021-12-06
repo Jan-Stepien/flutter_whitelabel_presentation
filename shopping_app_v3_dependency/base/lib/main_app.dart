@@ -7,45 +7,29 @@ import 'package:shopping_app/feature/home/bloc/products_event.dart';
 import 'package:shopping_app/feature/home/home_page.dart';
 import 'package:shopping_app/feature/shopping_cart/bloc/shopping_cart_bloc.dart';
 import 'package:shopping_app/repository/product_repository.dart';
-import 'package:shopping_app/service/product_service/product_service.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
+    return MultiBlocProvider(
       providers: [
-        RepositoryProvider<ProductRepository>(
-          create: (_) => SpecificProductRepository(
-            service: SpecificProductService(
-              databaseSource: DatabaseConfiguration(
-                name: context.read<AppConfiguration>().database.name,
-                type: context.read<AppConfiguration>().database.type,
-              ),
-            ),
-          ),
+        BlocProvider<ShoppingCartBloc>(
+          create: (_) => ShoppingCartBloc(),
         ),
-      ],
-      child: Builder(
-        builder: (context) => MultiBlocProvider(
-          providers: [
-            BlocProvider<ShoppingCartBloc>(
-              create: (_) => ShoppingCartBloc(),
-            ),
-            BlocProvider<ProductsBloc>(
-              create: (context) => ProductsBloc(
-                  productRepository: context.read<ProductRepository>())
+        BlocProvider<ProductsBloc>(
+          create: (context) =>
+              ProductsBloc(productRepository: context.read<ProductRepository>())
                 ..add(
                   LoadProductsEvent(),
                 ),
-            ),
-          ],
-          child: MaterialApp(
-              title: 'Flutter Demo',
-              theme: context.read<AppConfiguration>().themeData,
-              home: HomePage()),
         ),
+      ],
+      child: MaterialApp(
+        title: context.read<AppConfiguration>().appTitle,
+        theme: context.read<AppConfiguration>().themeData,
+        home: const HomePage(),
       ),
     );
   }
