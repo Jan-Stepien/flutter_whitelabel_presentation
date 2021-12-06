@@ -1,0 +1,82 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "assetImageFile": "beetroot.jpg",
+        "productName": "Beetroot",
+        "productDescription": "Vitamins, Minerals very high number,",
+        "productPrice": 9.99 
+      },
+      {
+        "id": 2,
+        "assetImageFile": "brussel_sprouts.jpg",
+        "productName": "Brussel Sprouts",
+        "productDescription": "It's second great product",
+        "productPrice": 3.99 
+      },
+      {
+        "id": 3,
+        "assetImageFile": "carrots.jpg",
+        "productName": "Carrots",
+        "productDescription": "It's second great product",
+        "productPrice": 2.99 
+      },
+      {
+        "id": 4,
+        "assetImageFile": "celery.jpg",
+        "productName": "Celery",
+        "productDescription": "It's second great product",
+        "productPrice": 0.99 
+      },
+      {
+        "id": 5,
+        "assetImageFile": "garlic.jpg",
+        "productName": "Garlic",
+        "productDescription": "It's second great product",
+        "productPrice": 3.99 
+      },
+      {
+        "id": 6,
+        "assetImageFile": "leek.jpg",
+        "productName": "Leek",
+        "productDescription": "It's second great product",
+        "productPrice": 6.99 
+      },
+      {
+        "id": 7,
+        "assetImageFile": "mushrooms.jpg",
+        "productName": "Mushrooms",
+        "productDescription": "It's second great product",
+        "productPrice": 9.99 
+      },
+      {
+        "id": 8,
+        "assetImageFile": "onion.jpg",
+        "productName": "Onion",
+        "productDescription": "It's second great product",
+        "productPrice": 1.99 
+      },
+      {
+        "id": 9,
+        "assetImageFile": "paprika.jpg",
+        "productName": "Paprika",
+        "productDescription": "It's second great product",
+        "productPrice": 4.99 
+      },
+      {
+        "id": 10,
+        "assetImageFile": "tomato.jpg",
+        "productName": "Tomato",
+        "productDescription": "It's second great product",
+        "productPrice": 6.99 
+      },
+      {
+        "id": 11,
+        "assetImageFile": "zuccini.jpg",
+        "productName": "Zuccini",
+        "productDescription": "It's second great product",
+        "productPrice": 1.99 
+      }
+    ]
+  }
+  
