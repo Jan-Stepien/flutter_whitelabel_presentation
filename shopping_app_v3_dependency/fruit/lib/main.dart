@@ -6,26 +6,22 @@ import 'package:fruit/service/fruit_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_app/configuration/configuration.dart';
 import 'package:shopping_app/main_app.dart';
-import 'package:shopping_app/repository/product_repository.dart';
 
 void main() {
   runApp(
     Provider<AppConfiguration>(
       create: (_) => FruitsAppConfiguration(),
-      child: MultiRepositoryProvider(
-        providers: [
-          RepositoryProvider<ProductRepository>(
-            create: (context) => FruitProductRepository(
-              service: FruitProductService(
-                databaseSource: DatabaseConfiguration(
-                  name: context.read<AppConfiguration>().database.name,
-                  type: context.read<AppConfiguration>().database.type,
-                ),
+      child: Builder(
+        builder: (context) => MyApp(
+          productRepository: FruitProductRepository(
+            service: FruitProductService(
+              databaseSource: DatabaseConfiguration(
+                name: context.read<AppConfiguration>().database.name,
+                type: context.read<AppConfiguration>().database.type,
               ),
             ),
           ),
-        ],
-        child: const MyApp(),
+        ),
       ),
     ),
   );

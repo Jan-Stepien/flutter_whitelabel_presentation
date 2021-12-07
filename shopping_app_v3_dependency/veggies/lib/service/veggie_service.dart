@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:shopping_app/configuration/configuration.dart';
 import 'package:shopping_app/feature/home/model/product.dart';
-import 'package:shopping_app/service/product_service/product_service.dart';
+import 'package:shopping_app/service/product_service.dart';
 
 class VeggieProductService extends ProductService {
   VeggieProductService({required this.databaseSource});

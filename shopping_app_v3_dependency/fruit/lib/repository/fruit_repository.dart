@@ -1,6 +1,6 @@
 import 'package:shopping_app/feature/home/model/product.dart';
 import 'package:shopping_app/repository/product_repository.dart';
-import 'package:shopping_app/service/product_service/product_service.dart';
+import 'package:shopping_app/service/product_service.dart';
 
 class FruitProductRepository extends ProductRepository {
   FruitProductRepository({required this.service});

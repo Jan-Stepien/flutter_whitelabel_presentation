@@ -9,27 +9,38 @@ import 'package:shopping_app/feature/shopping_cart/bloc/shopping_cart_bloc.dart'
 import 'package:shopping_app/repository/product_repository.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({
+    Key? key,
+    required this.productRepository,
+  }) : super(key: key);
+
+  final ProductRepository productRepository;
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider<ShoppingCartBloc>(
-          create: (_) => ShoppingCartBloc(),
-        ),
-        BlocProvider<ProductsBloc>(
-          create: (context) =>
-              ProductsBloc(productRepository: context.read<ProductRepository>())
-                ..add(
-                  LoadProductsEvent(),
-                ),
-        ),
+        RepositoryProvider<ProductRepository>(
+            create: (context) => productRepository)
       ],
-      child: MaterialApp(
-        title: context.read<AppConfiguration>().appTitle,
-        theme: context.read<AppConfiguration>().themeData,
-        home: const HomePage(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<ShoppingCartBloc>(
+            create: (_) => ShoppingCartBloc(),
+          ),
+          BlocProvider<ProductsBloc>(
+            create: (context) => ProductsBloc(
+                productRepository: context.read<ProductRepository>())
+              ..add(
+                LoadProductsEvent(),
+              ),
+          ),
+        ],
+        child: MaterialApp(
+          title: context.read<AppConfiguration>().appTitle,
+          theme: context.read<AppConfiguration>().themeData,
+          home: const HomePage(),
+        ),
       ),
     );
   }

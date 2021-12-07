@@ -15,6 +15,8 @@ class ProductPage extends StatelessWidget {
         'assets/${context.read<AppConfiguration>().assetsFolderName}/${product.assetImageFile}';
     return Scaffold(
       appBar: AppBar(),
+      backgroundColor:
+          context.read<AppConfiguration>().homeDetail.backgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

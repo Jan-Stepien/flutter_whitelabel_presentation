@@ -27,5 +27,6 @@ class VeggiesAppConfiguration implements AppConfiguration {
       HomeDetailPageConfiguration(backgroundColor: Colors.lightGreen);
 
   @override
-  ThemeData get themeData => ThemeData.light();
+  ThemeData get themeData => ThemeData.light()
+      .copyWith(appBarTheme: const AppBarTheme(backgroundColor: Colors.green));
 }
