@@ -12,34 +12,41 @@ class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
     required this.productRepository,
+    required this.appConfiguration,
   }) : super(key: key);
 
   final ProductRepository productRepository;
+  final AppConfiguration appConfiguration;
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<ProductRepository>(
-            create: (context) => productRepository)
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<ShoppingCartBloc>(
-            create: (_) => ShoppingCartBloc(),
-          ),
-          BlocProvider<ProductsBloc>(
-            create: (context) => ProductsBloc(
-                productRepository: context.read<ProductRepository>())
-              ..add(
-                LoadProductsEvent(),
+    return Provider<AppConfiguration>(
+      create: (_) => appConfiguration,
+      child: Builder(
+        builder: (context) => MultiRepositoryProvider(
+          providers: [
+            RepositoryProvider<ProductRepository>(
+                create: (context) => productRepository)
+          ],
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider<ShoppingCartBloc>(
+                create: (_) => ShoppingCartBloc(),
               ),
+              BlocProvider<ProductsBloc>(
+                create: (context) => ProductsBloc(
+                    productRepository: context.read<ProductRepository>())
+                  ..add(
+                    LoadProductsEvent(),
+                  ),
+              ),
+            ],
+            child: MaterialApp(
+              title: context.read<AppConfiguration>().appTitle,
+              theme: context.read<AppConfiguration>().themeData,
+              home: const HomePage(),
+            ),
           ),
-        ],
-        child: MaterialApp(
-          title: context.read<AppConfiguration>().appTitle,
-          theme: context.read<AppConfiguration>().themeData,
-          home: const HomePage(),
         ),
       ),
     );
